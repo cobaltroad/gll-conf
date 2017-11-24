@@ -1,9 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# unencrypted password: goodpassword
 attendee:
   email: attendee@foo.com
+  encrypted_password: e2aa247537e9ebfcad9a8016ccbc30f16aeed489e68c15d577e7b4db07798276f2085a119e7c3f7451339c59fa7b41693d8efe667b5885696e9a8aea74b8f0a4
+  password_salt: pepper
   role: attendee
 
+# unencrypted password: modpassword
 moderator:
   email: moderator@foo.com
+  encrypted_password: 2e84f436d85034ba851b825a57a4907ffa841715295fddc915c45921afcbaa6cdfbd162674a6f6bab0c6260441b3c8c79cbc8346f7e84e0e08373cffd77d40c6
+  password_salt: pepper
   role: moderator
