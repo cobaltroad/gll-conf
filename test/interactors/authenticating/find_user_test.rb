@@ -2,13 +2,20 @@ require 'test_helper'
 
 class FindUserInteractorTest < ActiveSupport::TestCase
   def setup
-    @user = User.create(email: "foo@bar.com")
+    @attendee  = users(:attendee)
+    @moderator = users(:moderator)
   end
 
-  test "user exists" do
-    result = Authenticating::FindUser.call(email: @user.email)
+  test "attendee exists" do
+    result = Authenticating::FindUser.call(email: @attendee.email)
     assert result.success?
-    assert @user, result.user
+    assert @attendee, result.user
+  end
+
+  test "moderator exists" do
+    result = Authenticating::FindUser.call(email: @moderator.email)
+    assert result.success?
+    assert @moderator, result.user
   end
 
   test "user does not exist" do

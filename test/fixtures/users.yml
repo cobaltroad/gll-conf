@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  email: MyString
+attendee:
+  email: attendee@foo.com
+  role: attendee
 
-two:
-  email: MyString
+moderator:
+  email: moderator@foo.com
+  role: moderator
