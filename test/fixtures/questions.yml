@@ -1,13 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# no yes votes
 one:
   body: What is your name?
   user: attendee
 
+# three yes votes
 two:
   body: What is your quest?
   user: other_attendee
 
+# two yes votes
 three:
   body: What is the average airspeed of an unladen swallow?
   user: moderator

@@ -9,4 +9,7 @@ class User < ApplicationRecord
   def is_moderator?
     role.to_s.downcase == MODERATOR_STRING
   end
+
+  has_many :questions
+  has_many :votes
 end

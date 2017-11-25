@@ -1,0 +1,42 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+attendee_question_one:
+  yes_vote: false
+  question: one
+  user: attendee
+
+attendee_question_two:
+  yes_vote: true
+  question: two
+  user: attendee
+
+attendee_question_three:
+  yes_vote: true
+  question: three
+  user: attendee
+
+other_question_one:
+  yes_vote: false
+  question: one
+  user: other_attendee
+
+other_question_two:
+  yes_vote: true
+  question: two
+  user: other_attendee
+
+moderator_question_one:
+  yes_vote: false
+  question: one
+  user: moderator
+
+moderator_question_two:
+  yes_vote: true
+  question: two
+  user: moderator
+
+moderator_question_three:
+  yes_vote: true
+  question: three
+  user: moderator
+
