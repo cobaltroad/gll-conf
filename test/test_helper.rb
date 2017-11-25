@@ -6,8 +6,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  def login_as_attendee
-    post authentication_url(email: "attendee@foo.com",
-                            password: "goodpassword")
+  def auth_header(token)
+    { "Authorization": "Bearer #{token}" }
   end
+
 end
