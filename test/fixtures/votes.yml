@@ -25,11 +25,6 @@ other_question_two:
   question: two
   user: other_attendee
 
-other_question_three:
-  yes_vote: false
-  question: three
-  user: other_attendee
-
 moderator_question_one:
   yes_vote: false
   question: one

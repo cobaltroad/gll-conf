@@ -26,7 +26,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     json = response.body
     hash = json.blank? ? {} : JSON.parse(json)
-    hash_question_ids = hash['questions'].map { |q| q['id'] }
+    hash_question_ids = hash.map { |q| q['id'] }
 
     expected_sort = [
       questions(:two).id,

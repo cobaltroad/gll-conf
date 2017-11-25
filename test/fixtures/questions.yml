@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one yes vote
+# no yes votes
 one:
   body: What is your name?
   user: attendee
