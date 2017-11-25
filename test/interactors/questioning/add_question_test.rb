@@ -9,6 +9,7 @@ class AddQuestionInteractorTest < ActiveSupport::TestCase
     assert_difference ->{ Question.count } do
       result = Questioning::AddQuestion.call(user: @user, body: "New Question?")
       assert result.success?
+      assert_equal "New Question?", result.question.body
     end
   end
 
