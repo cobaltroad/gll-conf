@@ -6,4 +6,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def auth_header(token)
+    { "Authorization": "Bearer #{token}" }
+  end
+
 end

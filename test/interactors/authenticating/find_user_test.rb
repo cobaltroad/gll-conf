@@ -9,13 +9,13 @@ class FindUserInteractorTest < ActiveSupport::TestCase
   test "attendee exists" do
     result = Authenticating::FindUser.call(email: @attendee.email)
     assert result.success?
-    assert @attendee, result.user
+    assert_equal @attendee, result.user
   end
 
   test "moderator exists" do
     result = Authenticating::FindUser.call(email: @moderator.email)
     assert result.success?
-    assert @moderator, result.user
+    assert_equal @moderator, result.user
   end
 
   test "user does not exist" do

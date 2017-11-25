@@ -4,7 +4,7 @@ class AuthenticationsController < ApplicationController
   def create
     i = Authenticating::AuthenticateUser.call(permitted_params)
     if i.success?
-      @current_user = i.user
+      render json: { current_user_id: i.user.id }
     else
       render json: { error: 'Not Authenticated' }, status: i.status
     end

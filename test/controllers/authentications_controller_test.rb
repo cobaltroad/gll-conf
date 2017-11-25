@@ -5,6 +5,9 @@ class AuthenticationsControllerTest < ActionDispatch::IntegrationTest
     post authentication_url(email: "attendee@foo.com",
                             password: "goodpassword")
     assert_response :success
+    json = response.body
+    hash = json.blank? ? {} : JSON.parse(json)
+    assert_includes hash.keys, "current_user_id"
   end
 
   test "valid email, invalid password" do
