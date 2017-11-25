@@ -1,4 +1,8 @@
 class QuestionsController < BaseController
+  def index
+    render json: { questions: Question.all }
+  end
+
   def create
     i = Questioning::AddQuestion.call(user: @current_user,
                                       body: params[:question])
@@ -8,6 +12,4 @@ class QuestionsController < BaseController
       render json: i.errors, status: :unprocessable_entity
     end
   end
-
-
 end
