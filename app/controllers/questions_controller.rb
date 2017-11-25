@@ -1,6 +1,6 @@
 class QuestionsController < BaseController
   def index
-    render json: { questions: Question.all }
+    render json: { questions: Question.sorted_by_yes_votes }
   end
 
   def create

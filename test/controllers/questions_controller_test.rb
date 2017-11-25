@@ -27,7 +27,13 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     json = response.body
     hash = json.blank? ? {} : JSON.parse(json)
     hash_question_ids = hash['questions'].map { |q| q['id'] }
-    assert_equal hash_question_ids, Question.all.map(&:id)
+
+    expected_sort = [
+      questions(:two).id,
+      questions(:three).id,
+      questions(:one).id
+    ]
+    assert_equal expected_sort, hash_question_ids
   end
 
   test "view all questions with no auth header" do
