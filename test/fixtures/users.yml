@@ -7,6 +7,13 @@ attendee:
   password_salt: pepper
   role: attendee
 
+# unencrypted password: anotherone
+other_attendee:
+  email: another@foo.com
+  encrypted_password: e1e49e59e9314a2b90bfeb4a44ca70537db85dfb6a8219360557f49f1cfd83fb495e0b5622f26b06a6ed73f27e36ee37f4225401d9965000ea4dcbfb6df1392c
+  password_salt: pepper
+  role: attendee
+
 # unencrypted password: modpassword
 moderator:
   email: moderator@foo.com
