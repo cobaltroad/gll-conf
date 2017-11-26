@@ -3,7 +3,10 @@ class BaseController < ApplicationController
 
   def authenticate_request
     if auth_token.blank?
-      render json: { error: 'Not Authenticated' }, status: :unauthorized
+      respond_to do |format|
+        format.html { redirect_to authentication_url }
+        format.json { render json: { error: 'Not Authenticated' }, status: :unauthorized }
+      end
     else
       @current_user = User.find(auth_token.to_i)
     end
