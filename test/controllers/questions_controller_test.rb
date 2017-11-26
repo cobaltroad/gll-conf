@@ -45,14 +45,14 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     user = users(:moderator)
     header = auth_header(user.id)
     question = questions(:two)
-    post question_url(id: question.id, is_selected: true), headers: header
+    put question_url(id: question.id, is_selected: true), headers: header
     assert_response :ok
     assert question.reload.is_selected
   end
 
   test "selecting a question as attendee" do
     question = questions(:two)
-    post question_url(id: question.id, is_selected: true), headers: @header
+    put question_url(id: question.id, is_selected: true), headers: @header
     assert_response :unauthorized
     assert_not question.is_selected
   end

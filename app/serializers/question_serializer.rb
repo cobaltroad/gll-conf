@@ -1,6 +1,9 @@
 class QuestionSerializer < ActiveModel::Serializer
-  attributes :id, :body, :yes_vote_total
-  attribute :submitted_by
+  attributes \
+    :id,
+    :body,
+    :submitted_by,
+    :yes_vote_total
 
   def submitted_by
     object.user.email

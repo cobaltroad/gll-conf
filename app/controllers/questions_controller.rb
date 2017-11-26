@@ -10,7 +10,18 @@ class QuestionsController < BaseController
     if i.success?
       render json: { question: i.question }, status: :created
     else
-      render json: i.errors, status: :unprocessable_entity
+      render json: i.message, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    i = Questioning::SelectQuestion.call(user: @current_user,
+                                         question_id: params[:id],
+                                         is_selected: params[:is_selected])
+    if i.success?
+      render json: i.question, serializer: QuestionSerializer
+    else
+      render json: i.message, status: i.status
     end
   end
 
@@ -21,7 +32,7 @@ class QuestionsController < BaseController
     if i.success?
       render json: { vote: i.vote }, status: i.status
     else
-      render json: i.errors, status: :unprocessable_entity
+      render json: i.message, status: :unprocessable_entity
     end
   end
 end
