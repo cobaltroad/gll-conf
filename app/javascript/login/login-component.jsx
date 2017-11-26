@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import HttpClient from '../http-client/http-client'
 
 export default class LoginComponent extends React.Component {
   constructor() {
@@ -9,11 +9,7 @@ export default class LoginComponent extends React.Component {
       password: ''
     };
 
-    let token = document.getElementsByName('csrf-token')[0]['content'];
-    this.httpClient = axios.create({
-      baseURL: 'http://localhost:3000',
-      headers: { 'X-CSRF-Token': token }
-    });
+    this.httpClient = HttpClient.instance;
   }
 
   onChange = (e) => {
@@ -24,14 +20,7 @@ export default class LoginComponent extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    this.httpClient.post('/authentication', this.state)
-      .then((result) => {
-        console.log("RESULT", result);
-      })
-      .catch((error) => {
-        console.log("ERROR", error);
-      });
+    this.httpClient.authenticate(this.state);
   }
 
   render() {
