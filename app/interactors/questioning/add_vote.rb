@@ -2,7 +2,7 @@ class Questioning::AddVote
   include Interactor
 
   before do
-    @question = Question.find(context.question_id)
+    @question = Question.find_by(id: context.question_id)
     context.fail!(message: "Question required") unless @question
   end
 
@@ -11,8 +11,11 @@ class Questioning::AddVote
     if existing_vote
       existing_vote.update_attributes(yes_vote: context.yes_vote)
       context.vote = existing_vote
+      changed = existing_vote.yes_vote_previously_changed?
+      context.status = changed ? :ok : :not_modified
     else
       context.vote = Vote.create(user: context.user, question: @question, yes_vote: context.yes_vote)
+      context.status = :created
     end
   end
 end

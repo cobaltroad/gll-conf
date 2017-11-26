@@ -13,4 +13,15 @@ class QuestionsController < BaseController
       render json: i.errors, status: :unprocessable_entity
     end
   end
+
+  def vote
+    i = Questioning::AddVote.call(user: @current_user,
+                                  question_id: params[:id],
+                                  yes_vote: params[:yes_vote])
+    if i.success?
+      render json: { vote: i.vote }, status: i.status
+    else
+      render json: i.errors, status: :unprocessable_entity
+    end
+  end
 end
