@@ -9,7 +9,10 @@ export default class HttpClient {
     }
     this.axiosInstance = axios.create({
       baseURL: 'http://localhost:3000',
-      headers: { 'X-CSRF-Token': this.state['token'] }
+      headers: {
+        'X-CSRF-Token': this.state['token'],
+        'Accept':       'application/json'
+      }
     });
   }
 
@@ -23,8 +26,37 @@ export default class HttpClient {
       });
   }
 
+  questions() {
+    return this.axiosInstance.get('/questions', this.authorizationHeader())
+      .then((success) => {
+        return success.data
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
+  }
+
+  addQuestion(obj) {
+    return this.axiosInstance.post('/questions', obj, this.authorizationHeader())
+      .then((success) => {
+        console.log("QUESTION", success);
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
+  }
+
   isLoggedIn() {
     let currentUser = localStorage.getItem('currentUser');
     return !!currentUser;
+  }
+
+  authorizationHeader() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return {
+      headers: {
+        'Authorization': "Bearer " + currentUser.id
+      }
+    }
   }
 }

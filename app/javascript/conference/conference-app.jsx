@@ -4,7 +4,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-import DashboardComponent from './dashboard-component'
+import Dashboard from './dashboard-component'
 import LoginComponent from './authentication/login-component'
 import LogoutComponent from './authentication/logout-component'
 import HttpClient from './http-client/http-client'
@@ -20,7 +20,7 @@ const ConferenceApp = (props) => (
           null
         )
       )}/>
-      <PrivateRoute exact path='/' component={DashboardComponent} />
+      <PrivateRoute exact path='/' component={Dashboard} />
     </div>
   </Router>
 )
