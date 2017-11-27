@@ -7,17 +7,17 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "current user posts a valid string" do
-    post questions_url(question: "Some new question?"), headers: @header
+    post questions_url(body: "Some new question?"), headers: @header
     assert_response :created
   end
 
   test "current user posts an invalid string" do
-    post questions_url(question: ""), headers: @header
+    post questions_url(body: ""), headers: @header
     assert_response :unprocessable_entity
   end
 
   test "posting with no auth header" do
-    post questions_url(question: "Doesn't matter?")
+    post questions_url(body: "Doesn't matter?")
     assert_response :unauthorized
   end
 
