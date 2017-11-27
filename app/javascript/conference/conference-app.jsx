@@ -5,14 +5,14 @@ import {
   Redirect
 } from 'react-router-dom'
 import DashboardComponent from './dashboard-component'
-import AuthenticationComponent from './authentication/authentication-component'
-import HttpClient from './http-client/http-client'
+import LoginComponent from './authentication/login-component'
 import LogoutComponent from './authentication/logout-component'
+import HttpClient from './http-client/http-client'
 
 const ConferenceApp = (props) => (
   <Router>
     <div>
-      <Route path='/login' component={AuthenticationComponent} />
+      <Route path='/login' component={LoginComponent} />
       <Route render={() => (
         HttpClient.instance.isLoggedIn() ? (
           <LogoutComponent/>

@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import HttpClient from '../http-client/http-client'
 
-export default class AuthenticationComponent extends React.Component {
+export default class LoginComponent extends React.Component {
   constructor() {
     super();
     this.state = {
