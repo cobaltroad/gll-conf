@@ -12,7 +12,14 @@ const ConferenceApp = (props) => (
   <Router>
     <div>
       <Route path='/authentication' component={AuthenticationComponent} />
-      <PrivateRoute path='/' component={DashboardComponent} />
+      <Route render={() => (
+        HttpClient.instance.isLoggedIn() ? (
+          <div>Log Out</div>
+        ) : (
+          null
+        )
+      )}/>
+      <PrivateRoute exact path='/' component={DashboardComponent} />
     </div>
   </Router>
 )

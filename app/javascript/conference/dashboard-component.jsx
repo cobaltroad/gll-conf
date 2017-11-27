@@ -21,9 +21,12 @@ export default class DashboardComponent extends React.Component {
 
   render() {
     if (this.state['loggedIn']) {
+      let currentUser = localStorage.getItem('currentUser');
+      console.log("CURRENT USER", currentUser);
       return(
         <div>
           <h1>Dashboard</h1>
+
           <button onClick={this.signout}>Sign Out</button>
         </div>
       );
