@@ -32,7 +32,7 @@ export default class AuthenticationComponent extends React.Component {
 
   render() {
     if (this.state['loggedIn']) {
-      console.log("REDIRECTING");
+      console.log("LOGGING IN");
       return(
         <Redirect to={{ pathname: '/' }}/>
       );
