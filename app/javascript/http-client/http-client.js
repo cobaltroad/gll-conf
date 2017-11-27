@@ -5,7 +5,8 @@ export default class HttpClient {
 
   constructor() {
     this.state = {
-      token: document.getElementsByName('csrf-token')[0]['content']
+      token: document.getElementsByName('csrf-token')[0]['content'],
+      currentUserId: null
     }
     this.axiosInstance = axios.create({
       baseURL: 'http://localhost:3000',
@@ -14,12 +15,16 @@ export default class HttpClient {
   }
 
   authenticate(obj) {
-    this.axiosInstance.post('/authentication', obj)
-      .then((result) => {
-        console.log("RESULT", result);
+    return this.axiosInstance.post('/authentication', obj)
+      .then((success) => {
+        this.state['currentUserId'] = success.data.current_user_id;
       })
       .catch((error) => {
         console.log("ERROR", error);
       });
+  }
+
+  isLoggedIn() {
+    return !!this.state['currentUserId'];
   }
 }
