@@ -29,7 +29,17 @@ export default class HttpClient {
   questions() {
     return this.axiosInstance.get('/questions', this.authorizationHeader())
       .then((success) => {
-        console.log("QUESTIONS", success);
+        return success.data
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
+  }
+
+  addQuestion(obj) {
+    return this.axiosInstance.post('/questions', obj, this.authorizationHeader())
+      .then((success) => {
+        console.log("QUESTION", success);
       })
       .catch((error) => {
         console.log("ERROR", error);

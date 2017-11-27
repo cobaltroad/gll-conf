@@ -1,5 +1,6 @@
 import React from 'react'
 import Questions from './questions/questions-component'
+import AskQuestion from './questions/ask-question-component'
 
 export default class Dashboard extends React.Component {
   constructor() {
@@ -14,7 +15,8 @@ export default class Dashboard extends React.Component {
         <h3>Email: {this.currentUser.email}</h3>
         <h3>Role: {this.currentUser.role}</h3>
         <hr />
-        <Questions currentUserId={this.currentUser.id} />
+        <AskQuestion />
+        <Questions />
       </div>
     );
   }

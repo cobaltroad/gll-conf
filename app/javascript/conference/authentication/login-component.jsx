@@ -41,7 +41,7 @@ export default class LoginComponent extends React.Component {
         <form onSubmit={this.onSubmit}>
           <input name="email" placeholder="Email Address" onChange={this.onChange} />
           <input type="password" name="password" placeholder="Password" onChange={this.onChange} />
-          <button type="Submit">Log In</button>
+          <button type="submit">Log In</button>
         </form>
       );
     }
