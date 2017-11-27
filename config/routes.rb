@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'questions#index'
+  root to: 'homepage#show'
 end
