@@ -30,7 +30,7 @@ export default class LogoutComponent extends React.Component {
     } else {
       console.log("LOGGING OUT");
       return(
-        <Redirect to={{ pathname: '/authentication' }}/>
+        <Redirect to={{ pathname: '/login' }}/>
       );
     }
   }
