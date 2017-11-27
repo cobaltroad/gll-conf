@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'homepage#show'
+  defaults format: :html do
+    get '/*path', to: redirect('/')
+  end
+
   resource :authentication, only: [:create]
   resources :questions, only: [:index, :create, :update] do
     member do
       post :vote
     end
   end
-
-  root to: 'homepage#show'
 end
