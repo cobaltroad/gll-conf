@@ -1,12 +1,6 @@
 class AuthenticationsController < ApplicationController
   attr_reader :current_user
 
-  def show
-    respond_to do |format|
-      format.html
-    end
-  end
-
   def create
     i = Authenticating::AuthenticateUser.call(permitted_params)
     if i.success?
