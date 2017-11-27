@@ -7,6 +7,7 @@ import {
 import DashboardComponent from './dashboard-component'
 import AuthenticationComponent from './authentication-component'
 import HttpClient from '../http-client/http-client'
+import LogoutComponent from './authentication/logout-component'
 
 const ConferenceApp = (props) => (
   <Router>
@@ -14,7 +15,7 @@ const ConferenceApp = (props) => (
       <Route path='/authentication' component={AuthenticationComponent} />
       <Route render={() => (
         HttpClient.instance.isLoggedIn() ? (
-          <div>Log Out</div>
+          <LogoutComponent/>
         ) : (
           null
         )
