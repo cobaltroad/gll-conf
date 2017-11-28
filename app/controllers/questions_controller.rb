@@ -32,7 +32,7 @@ class QuestionsController < BaseController
                                   question_id: params[:id],
                                   yes_vote: params[:yes_vote])
     if i.success?
-      render json: { vote: i.vote }, status: i.status
+      render json: i.question, serializer: QuestionSerializer, status: i.status
     else
       render json: i.message, status: :unprocessable_entity
     end

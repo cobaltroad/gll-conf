@@ -2,7 +2,7 @@ class Questioning::AddVote
   include Interactor
 
   before do
-    @question = Question.find_by(id: context.question_id)
+    @question = Question.with_votes.find_by(id: context.question_id)
     context.fail!(message: "Question required") unless @question
   end
 
@@ -17,5 +17,6 @@ class Questioning::AddVote
       context.vote = Vote.create(user: context.user, question: @question, yes_vote: context.yes_vote)
       context.status = :created
     end
+    context.question = @question
   end
 end
