@@ -1,7 +1,9 @@
 class QuestionsController < BaseController
   def index
     questions = Question.with_votes.order("yes_vote_total DESC")
-    render json: questions, each_serializer: QuestionSerializer
+    render json: questions,
+           each_serializer: QuestionSerializer,
+           current_user: @current_user
   end
 
   def create
