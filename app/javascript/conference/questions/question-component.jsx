@@ -7,6 +7,10 @@ export default class Question extends React.Component {
     this.state = { ...props };
   }
 
+  liftStateUp = () => {
+    this.props.onVoted();
+  }
+
   render() {
     const {
       id,
@@ -20,6 +24,7 @@ export default class Question extends React.Component {
         <VoteQuestion id={id}
                       yes_vote_total={yes_vote_total}
                       current_user_yes_vote={current_user_yes_vote}
+                      onVoted={this.liftStateUp}
         />
         <span>
           <strong>"{body}"</strong> - <em>{submitted_by}</em>

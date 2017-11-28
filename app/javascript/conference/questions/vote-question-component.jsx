@@ -18,6 +18,7 @@ export default class VoteQuestion extends React.Component {
     }
     this.httpClient.voteQuestion(voteObj).then((question) => {
       this.setState(question);
+      this.liftStateUp();
     });
   }
 
@@ -29,7 +30,12 @@ export default class VoteQuestion extends React.Component {
     }
     this.httpClient.voteQuestion(voteObj).then((question) => {
       this.setState(question);
+      this.liftStateUp();
     });
+  }
+
+  liftStateUp() {
+    this.props.onVoted();
   }
 
   render() {

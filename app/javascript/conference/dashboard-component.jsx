@@ -30,7 +30,9 @@ export default class Dashboard extends React.Component {
         <h3>Role: {this.currentUser.role}</h3>
         <hr />
         <AskQuestion onQuestionAdded={this.updateState} />
-        <Questions questions={this.state.questions} />
+        <Questions onVoted={this.updateState}
+                   questions={this.state.questions}
+        />
       </div>
     );
   }
