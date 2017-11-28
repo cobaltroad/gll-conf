@@ -1,23 +1,13 @@
 import React from 'react'
-import HttpClient from '../http-client/http-client'
-
 import Question from './question-component'
 
 export default class Questions extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      questions: []
-    }
-
-    this.httpClient = HttpClient.instance;
-    this.httpClient.questions().then((questions) => {
-      this.setState({ questions: questions });
-    });
+  constructor(props) {
+    super(props);
   }
 
   render() {
-    var questions = this.state.questions.map(obj => (
+    var questions = this.props.questions.map(obj => (
       <li key={obj.id}>
         <Question id={obj.id}
                   body={obj.body}
