@@ -28,9 +28,7 @@ export default class HttpClient {
 
   questions() {
     return this.axiosInstance.get('/questions', this.authorizationHeader())
-      .then((success) => {
-        return success.data
-      })
+      .then(success => success.data)
       .catch((error) => {
         console.log("ERROR", error);
       });
@@ -44,6 +42,15 @@ export default class HttpClient {
       .catch((error) => {
         console.log("ERROR", error);
       });
+  }
+
+  voteQuestion(obj) {
+    var id = obj.id;
+    return this.axiosInstance.post('/questions/' + id + '/vote', obj, this.authorizationHeader())
+      .then(success => success.data)
+      .catch((error) => {
+        console.log("ERROR", error);
+      })
   }
 
   isLoggedIn() {

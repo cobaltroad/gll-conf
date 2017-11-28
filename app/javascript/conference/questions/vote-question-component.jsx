@@ -1,10 +1,35 @@
 import React from 'react'
 import styles from './vote-question.css.js'
+import HttpClient from '../http-client/http-client'
 
 export default class VoteQuestion extends React.Component {
   constructor(props) {
     super(props);
     this.state = { ...props };
+
+    this.httpClient = HttpClient.instance;
+  }
+
+  voteYes = (e) => {
+    e.preventDefault();
+    const voteObj = {
+      id: this.state.id,
+      yes_vote: true
+    }
+    this.httpClient.voteQuestion(voteObj).then((question) => {
+      this.setState(question);
+    });
+  }
+
+  voteNo = (e) => {
+    e.preventDefault();
+    const voteObj = {
+      id: this.state.id,
+      yes_vote: false
+    }
+    this.httpClient.voteQuestion(voteObj).then((question) => {
+      this.setState(question);
+    });
   }
 
   render() {
@@ -13,21 +38,14 @@ export default class VoteQuestion extends React.Component {
       current_user_yes_vote
     } = this.state;
 
-    var showYesButton = current_user_yes_vote === null ? true : !current_user_yes_vote;
-    var showNoButton  = current_user_yes_vote === null ? true :  current_user_yes_vote;
-
-    var yesButton = showYesButton ? (
-                      <button>Vote Yes</button>
-                    ) : (null);
-    var noButton  = showNoButton ? (
-                      <button>Vote No</button>
-                    ) : (null);
+    var disableYes = current_user_yes_vote === null ? false :  current_user_yes_vote;
+    var disableNo  = current_user_yes_vote === null ? false : !current_user_yes_vote;
 
     return(
       <span style={styles.span}>
-        {yesButton}
+        <button disabled={disableYes} onClick={this.voteYes}>Vote Yes</button>
         <input style={styles.input} value={yes_vote_total} disabled />
-        {noButton}
+        <button disabled={disableNo} onClick={this.voteNo}>Vote No</button>
       </span>
     );
   }
