@@ -4,7 +4,8 @@ class QuestionSerializer < ActiveModel::Serializer
     :body,
     :submitted_by,
     :yes_vote_total,
-    :current_user_yes_vote
+    :current_user_yes_vote,
+    :is_selected
 
   def submitted_by
     object.user.email
