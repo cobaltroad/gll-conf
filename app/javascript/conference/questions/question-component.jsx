@@ -1,4 +1,5 @@
 import React from 'react'
+import VoteQuestion from './vote-question-component'
 
 export default class Question extends React.Component {
   constructor(props) {
@@ -7,8 +8,21 @@ export default class Question extends React.Component {
   }
 
   render() {
+    const {
+      id,
+      body,
+      submitted_by,
+      yes_vote_total,
+      current_user_yes_vote
+    } = this.state;
     return(
-      <div>{this.state.body}</div>
+      <div>
+        <VoteQuestion id={id}
+                      yes_vote_total={yes_vote_total}
+                      current_user_yes_vote={current_user_yes_vote}
+        />
+        <strong>"{body}"</strong> - <em>{submitted_by}</em>
+      </div>
     );
   }
 }
