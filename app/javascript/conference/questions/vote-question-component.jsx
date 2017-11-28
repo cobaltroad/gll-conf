@@ -43,9 +43,9 @@ export default class VoteQuestion extends React.Component {
 
     return(
       <span style={styles.span}>
-        <button disabled={disableYes} onClick={this.voteYes}>Vote Yes</button>
+        <button style={disableYes ? styles.disabledButton : {}} disabled={disableYes} onClick={this.voteYes}>Vote Yes</button>
         <input style={styles.input} value={yes_vote_total} disabled />
-        <button disabled={disableNo} onClick={this.voteNo}>Vote No</button>
+        <button style={disableNo ? styles.disabledButton : {}} disabled={disableNo} onClick={this.voteNo}>Vote No</button>
       </span>
     );
   }
