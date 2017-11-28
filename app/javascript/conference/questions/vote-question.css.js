@@ -5,5 +5,9 @@ export default {
 
   span: {
     marginRight: '10px'
+  },
+
+  disabledButton: {
+    backgroundColor: 'lightgray'
   }
 }

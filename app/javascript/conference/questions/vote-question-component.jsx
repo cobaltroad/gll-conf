@@ -18,6 +18,7 @@ export default class VoteQuestion extends React.Component {
     }
     this.httpClient.voteQuestion(voteObj).then((question) => {
       this.setState(question);
+      this.liftStateUp();
     });
   }
 
@@ -29,7 +30,12 @@ export default class VoteQuestion extends React.Component {
     }
     this.httpClient.voteQuestion(voteObj).then((question) => {
       this.setState(question);
+      this.liftStateUp();
     });
+  }
+
+  liftStateUp() {
+    this.props.onVoted();
   }
 
   render() {
@@ -43,9 +49,9 @@ export default class VoteQuestion extends React.Component {
 
     return(
       <span style={styles.span}>
-        <button disabled={disableYes} onClick={this.voteYes}>Vote Yes</button>
+        <button style={disableYes ? styles.disabledButton : {}} disabled={disableYes} onClick={this.voteYes}>Vote Yes</button>
         <input style={styles.input} value={yes_vote_total} disabled />
-        <button disabled={disableNo} onClick={this.voteNo}>Vote No</button>
+        <button style={disableNo ? styles.disabledButton : {}} disabled={disableNo} onClick={this.voteNo}>Vote No</button>
       </span>
     );
   }

@@ -10,9 +10,7 @@ class QuestionsController < BaseController
     i = Questioning::AddQuestion.call(user: @current_user,
                                       body: params[:body])
     if i.success?
-      render json: i.question,
-             serializer: QuestionSerializer,
-             current_user: @current_user,
+      render json: { question: i.question },
              status: :created
     else
       render json: i.message, status: :unprocessable_entity

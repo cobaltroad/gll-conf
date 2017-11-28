@@ -36,9 +36,7 @@ export default class HttpClient {
 
   addQuestion(obj) {
     return this.axiosInstance.post('/questions', obj, this.authorizationHeader())
-      .then((success) => {
-        console.log("QUESTION", success);
-      })
+      .then(success => success.data.question)
       .catch((error) => {
         console.log("ERROR", error);
       });

@@ -2,8 +2,8 @@ import React from 'react'
 import HttpClient from '../http-client/http-client'
 
 export default class AskQuestion extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       question_text: ''
     };
@@ -19,7 +19,12 @@ export default class AskQuestion extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.httpClient.addQuestion({ body: this.state['question_text'] })
+    this.httpClient.addQuestion({ body: this.state.question_text })
+                   .then((question) => { this.liftStateUp(question.id); });
+  }
+
+  liftStateUp(questionId) {
+    this.props.onQuestionAdded(questionId);
   }
 
   render() {
