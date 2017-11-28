@@ -21,7 +21,9 @@ export default class Question extends React.Component {
                       yes_vote_total={yes_vote_total}
                       current_user_yes_vote={current_user_yes_vote}
         />
-        <strong>"{body}"</strong> - <em>{submitted_by}</em>
+        <span>
+          <strong>"{body}"</strong> - <em>{submitted_by}</em>
+        </span>
       </div>
     );
   }
