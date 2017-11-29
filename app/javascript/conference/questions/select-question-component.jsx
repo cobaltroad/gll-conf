@@ -7,6 +7,8 @@ export default class SelectQuestion extends React.Component {
     this.state = { ...props }
 
     this.httpClient = HttpClient.instance;
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.disabled = currentUser.role !== 'moderator';
   }
 
   toggleSelection = (e) => {
@@ -23,7 +25,7 @@ export default class SelectQuestion extends React.Component {
 
   render() {
     return(
-      <input type="checkbox" checked={this.state.is_selected} onChange={this.toggleSelection} />
+      <input disabled={this.disabled} type="checkbox" checked={this.state.is_selected} onChange={this.toggleSelection} />
     );
   }
 }
