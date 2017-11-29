@@ -3,6 +3,7 @@ class Authenticating::AddUser
 
   before do
     @role = context.is_moderator ? User::MODERATOR_STRING : User::ATTENDEE_STRING
+    context.fail!(message: "Password can't be blank") if context.password.blank?
   end
 
   def call

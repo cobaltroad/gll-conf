@@ -37,4 +37,28 @@ class AddUserInteractorTest < ActiveSupport::TestCase
       assert_nil result.user
     end
   end
+
+  test "empty email address" do
+    assert_no_difference ->{ User.count } do
+      @user = users(:attendee)
+      result = Authenticating::AddUser.call(
+        email: '',
+        password: 'doesntmatter'
+      )
+      assert_not result.success?
+      assert_nil result.user
+    end
+  end
+
+  test "empty password" do
+    assert_no_difference ->{ User.count } do
+      @user = users(:attendee)
+      result = Authenticating::AddUser.call(
+        email: 'doesnt@matter.com',
+        password: ''
+      )
+      assert_not result.success?
+      assert_nil result.user
+    end
+  end
 end
