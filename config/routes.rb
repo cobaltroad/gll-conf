@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root to: 'homepage#show'
 
-  resource :authentication, only: [:create]
+  resource :authentication, only: [:create] do
+    member do
+      post :add_user
+    end
+  end
   resources :questions, only: [:index, :create, :update] do
     member do
       post :vote
