@@ -25,7 +25,7 @@ export default class HttpClient {
 
   addUser(obj) {
     return this.axiosInstance.post('/authentication/add_user', obj)
-      .then((success) => success.data.user)
+      .then((success) => success.data)
   }
 
   questions() {

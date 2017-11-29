@@ -29,7 +29,7 @@ export default class RegistrationComponent extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     const state = this.state;
-    this.httpClient.addUser(state).then(() => {
+    this.httpClient.addUser(state).then((user) => {
       this.props.onRegister(state)
     }).catch((error) => {
       this.setState({ addError: error.response.data.message });

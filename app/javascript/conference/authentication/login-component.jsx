@@ -28,19 +28,17 @@ export default class LoginComponent extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    login(this.state);
-  }
-
-  onRegister = (state) => {
-    login(state);
-  }
-
-  login(state) {
-    this.httpClient.authenticate(state).then(() => {
+    this.httpClient.authenticate(this.state).then(() => {
       this.setState({ loggedIn: this.httpClient.isLoggedIn() });
     }).catch((error) => {
       this.setState({ loginError: error.response.data.message });
     });
+  }
+
+  onRegister = (state) => {
+    this.httpClient.authenticate(state).then(() => {
+      this.setState({ loggedIn: this.httpClient.isLoggedIn() });
+    })
   }
 
   render() {
