@@ -18,7 +18,7 @@ class Authenticating::AddUser
     if user.save
       context.user = user
     else
-      context.fail!(message: user.errors.full_messages)
+      context.fail!(message: user.errors.full_messages.join('; '))
     end
   end
 end

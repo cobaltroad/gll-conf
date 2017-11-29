@@ -4,6 +4,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import HttpClient from '../http-client/http-client'
+import Registration from './registration-component'
 
 export default class LoginComponent extends React.Component {
   constructor() {
@@ -27,7 +28,15 @@ export default class LoginComponent extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.httpClient.authenticate(this.state).then(() => {
+    login(this.state);
+  }
+
+  onRegister = (state) => {
+    login(state);
+  }
+
+  login(state) {
+    this.httpClient.authenticate(state).then(() => {
       this.setState({ loggedIn: this.httpClient.isLoggedIn() });
     }).catch((error) => {
       this.setState({ loginError: error.response.data.message });
@@ -52,6 +61,9 @@ export default class LoginComponent extends React.Component {
             <button type="submit">Log In</button>
           </form>
           <div>{this.state['loginError']}</div>
+          <hr/>
+          <h3>Register</h3>
+          <Registration onRegister={this.onRegister} />
         </div>
       );
     }

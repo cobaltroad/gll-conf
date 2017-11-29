@@ -23,11 +23,16 @@ export default class HttpClient {
       })
   }
 
+  addUser(obj) {
+    return this.axiosInstance.post('/authentication/add_user', obj)
+      .then((success) => success.data.user)
+  }
+
   questions() {
     return this.axiosInstance.get('/questions', this.authorizationHeader())
       .then(success => success.data)
       .catch((error) => {
-        console.log("ERROR", error);
+        console.log("ERROR", error.response);
       });
   }
 
@@ -35,7 +40,7 @@ export default class HttpClient {
     return this.axiosInstance.post('/questions', obj, this.authorizationHeader())
       .then(success => success.data.question)
       .catch((error) => {
-        console.log("ERROR", error);
+        console.log("ERROR", error.response);
       });
   }
 
@@ -44,7 +49,7 @@ export default class HttpClient {
     return this.axiosInstance.post('/questions/' + id + '/vote', obj, this.authorizationHeader())
       .then(success => success.data)
       .catch((error) => {
-        console.log("ERROR", error);
+        console.log("ERROR", error.response);
       })
   }
 
@@ -53,7 +58,7 @@ export default class HttpClient {
     return this.axiosInstance.put('/questions/' + id, obj, this.authorizationHeader())
       .then(success => success.data)
       .catch((error) => {
-        console.log("ERROR", error);
+        console.log("ERROR", error.response);
       })
   }
 
