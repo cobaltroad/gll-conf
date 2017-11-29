@@ -12,4 +12,7 @@ class User < ApplicationRecord
 
   has_many :questions
   has_many :votes
+
+  validates :email, uniqueness: true,
+                    presence: true
 end

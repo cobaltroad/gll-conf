@@ -6,13 +6,22 @@ class AuthenticationsController < ApplicationController
     if i.success?
       render json: i.user, serializer: CurrentUserSerializer
     else
-      render json: { error: 'Not Authenticated' }, status: i.status
+      render json: { message: 'Invalid email or password' }, status: i.status
+    end
+  end
+
+  def add_user
+    i = Authenticating::AddUser.call(permitted_params)
+    if i.success?
+      render json: i.user, serializer: CurrentUserSerializer, status: :created
+    else
+      render json: { message: i.message }, status: :unprocessable_entity
     end
   end
 
   private
 
   def permitted_params
-    params.permit(:email, :password)
+    params.permit(:email, :password, :is_moderator)
   end
 end

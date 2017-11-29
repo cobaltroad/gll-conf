@@ -18,4 +18,25 @@ class AuthenticationsControllerTest < ActionDispatch::IntegrationTest
                             password: "doesntmatter")
     assert_response :not_found
   end
+
+  test "adding a new attendee" do
+    post add_user_authentication_url(email: "newattendee@foo.com",
+                                     password: "newpassword",
+                                     is_moderator: false)
+    assert_response :created
+  end
+
+  test "adding a new moderator" do
+    post add_user_authentication_url(email: "newattendee@foo.com",
+                                     password: "newpassword",
+                                     is_moderator: true)
+    assert_response :created
+  end
+
+  test "adding an already used email" do
+    post add_user_authentication_url(email: "attendee@foo.com",
+                                     password: "newpassword",
+                                     is_moderator: false)
+    assert_response :unprocessable_entity
+  end
 end
