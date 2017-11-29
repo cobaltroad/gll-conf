@@ -11,7 +11,8 @@ export default class LoginComponent extends React.Component {
     this.state = {
       email: '',
       password: '',
-      loggedIn: false
+      loggedIn: false,
+      loginError: null
     };
 
     this.httpClient = HttpClient.instance;
@@ -20,6 +21,7 @@ export default class LoginComponent extends React.Component {
   onChange = (e) => {
     const state = this.state;
     state[e.target.name] = e.target.value;
+    state['loginError'] = null;
     this.setState(state);
   }
 
@@ -27,7 +29,9 @@ export default class LoginComponent extends React.Component {
     e.preventDefault();
     this.httpClient.authenticate(this.state).then(() => {
       this.setState({ loggedIn: this.httpClient.isLoggedIn() });
-    })
+    }).catch((error) => {
+      this.setState({ loginError: error.response.data.message });
+    });
   }
 
   render() {
@@ -38,11 +42,17 @@ export default class LoginComponent extends React.Component {
       );
     } else {
       return(
-        <form onSubmit={this.onSubmit}>
-          <input name="email" placeholder="Email Address" onChange={this.onChange} />
-          <input type="password" name="password" placeholder="Password" onChange={this.onChange} />
-          <button type="submit">Log In</button>
-        </form>
+        <div>
+          <h1>GLL Conference</h1>
+          <hr/>
+          <h3>Log In</h3>
+          <form onSubmit={this.onSubmit}>
+            <input name="email" placeholder="Email Address" onChange={this.onChange} />
+            <input type="password" name="password" placeholder="Password" onChange={this.onChange} />
+            <button type="submit">Log In</button>
+          </form>
+          <div>{this.state['loginError']}</div>
+        </div>
       );
     }
   }

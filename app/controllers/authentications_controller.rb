@@ -6,7 +6,7 @@ class AuthenticationsController < ApplicationController
     if i.success?
       render json: i.user, serializer: CurrentUserSerializer
     else
-      render json: { error: 'Not Authenticated' }, status: i.status
+      render json: { message: 'Invalid email or password' }, status: i.status
     end
   end
 

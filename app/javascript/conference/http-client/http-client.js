@@ -21,9 +21,6 @@ export default class HttpClient {
       .then((success) => {
         localStorage.setItem('currentUser', JSON.stringify(success.data));
       })
-      .catch((error) => {
-        console.log("ERROR", error);
-      });
   }
 
   questions() {
