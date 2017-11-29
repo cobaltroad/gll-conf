@@ -51,6 +51,15 @@ export default class HttpClient {
       })
   }
 
+  updateQuestion(obj) {
+    var id = obj.id;
+    return this.axiosInstance.put('/questions/' + id, obj, this.authorizationHeader())
+      .then(success => success.data)
+      .catch((error) => {
+        console.log("ERROR", error);
+      })
+  }
+
   isLoggedIn() {
     let currentUser = localStorage.getItem('currentUser');
     return !!currentUser;

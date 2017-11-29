@@ -21,6 +21,7 @@ export default class Questions extends React.Component {
                   submitted_by={obj.submitted_by}
                   yes_vote_total={obj.yes_vote_total}
                   current_user_yes_vote={obj.current_user_yes_vote}
+                  is_selected={obj.is_selected}
                   onVoted={this.liftStateUp}
         />
       </li>
