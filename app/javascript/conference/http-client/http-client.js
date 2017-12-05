@@ -8,7 +8,6 @@ export default class HttpClient {
       token: document.getElementsByName('csrf-token')[0]['content'],
     }
     this.axiosInstance = axios.create({
-      baseURL: 'http://localhost:3000',
       headers: {
         'X-CSRF-Token': this.state['token'],
         'Accept':       'application/json'
@@ -17,19 +16,19 @@ export default class HttpClient {
   }
 
   authenticate(obj) {
-    return this.axiosInstance.post('/authentication', obj)
+    return this.axiosInstance.post('/api/authentication', obj)
       .then((success) => {
         localStorage.setItem('currentUser', JSON.stringify(success.data));
       })
   }
 
   addUser(obj) {
-    return this.axiosInstance.post('/authentication/add_user', obj)
+    return this.axiosInstance.post('/api/authentication/add_user', obj)
       .then((success) => success.data)
   }
 
   questions() {
-    return this.axiosInstance.get('/questions', this.authorizationHeader())
+    return this.axiosInstance.get('/api/questions', this.authorizationHeader())
       .then(success => success.data)
       .catch((error) => {
         console.log("ERROR", error.response);
@@ -37,7 +36,7 @@ export default class HttpClient {
   }
 
   addQuestion(obj) {
-    return this.axiosInstance.post('/questions', obj, this.authorizationHeader())
+    return this.axiosInstance.post('/api/questions', obj, this.authorizationHeader())
       .then(success => success.data.question)
       .catch((error) => {
         console.log("ERROR", error.response);
@@ -46,7 +45,7 @@ export default class HttpClient {
 
   voteQuestion(obj) {
     var id = obj.id;
-    return this.axiosInstance.post('/questions/' + id + '/vote', obj, this.authorizationHeader())
+    return this.axiosInstance.post('/api/questions/' + id + '/vote', obj, this.authorizationHeader())
       .then(success => success.data)
       .catch((error) => {
         console.log("ERROR", error.response);
@@ -55,7 +54,7 @@ export default class HttpClient {
 
   updateQuestion(obj) {
     var id = obj.id;
-    return this.axiosInstance.put('/questions/' + id, obj, this.authorizationHeader())
+    return this.axiosInstance.put('/api/questions/' + id, obj, this.authorizationHeader())
       .then(success => success.data)
       .catch((error) => {
         console.log("ERROR", error.response);

@@ -1,4 +1,4 @@
-class QuestionsController < BaseController
+class Api::QuestionsController < Api::BaseController
   def index
     questions = Question.with_votes.order("yes_vote_total DESC")
     render json: questions,

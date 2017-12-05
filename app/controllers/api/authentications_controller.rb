@@ -1,4 +1,4 @@
-class AuthenticationsController < ApplicationController
+class Api::AuthenticationsController < ApplicationController
   attr_reader :current_user
 
   def create
