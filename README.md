@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The GLL Conference app is a sandbox/demo app running Rails 5.1.4 as well as React via Webpacker.
 
-Things you may want to cover:
+Gems are managed via Bundler.
 
-* Ruby version
+    gem install bundler
+    bundle install
 
-* System dependencies
+The Rails server operates as the backend API server.  React components communicate with the backend
+via a client.  `config/webpacker.yml` shows where the API proxy is mapped.
+In the development/local environment, this is mapped to `http://localhost:3000`
 
-* Configuration
+In order to start the server for this configuration, first start the backend
 
-* Database creation
+    rails server --port 3000
 
-* Database initialization
+and then run the webpack server
 
-* How to run the test suite
+    ./bin/webpack-dev-server
 
-* Services (job queues, cache servers, search engines, etc.)
+# HEROKU
 
-* Deployment instructions
+The app is also able to be deployed onto Heroku which manages all of the services.  It can be accessed at
 
-* ...
+    https://gll-conf.herokuapp.com/
+
+A test user has already been added, but all functionality (including registration) is available.  One
+could log in with the credentials `foo@bar.com` and password `foo`
