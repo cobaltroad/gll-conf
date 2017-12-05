@@ -7,22 +7,22 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "current user posts a valid string" do
-    post questions_url(body: "Some new question?"), headers: @header
+    post api_questions_url(body: "Some new question?"), headers: @header
     assert_response :created
   end
 
   test "current user posts an invalid string" do
-    post questions_url(body: ""), headers: @header
+    post api_questions_url(body: ""), headers: @header
     assert_response :unprocessable_entity
   end
 
   test "posting with no auth header" do
-    post questions_url(body: "Doesn't matter?")
+    post api_questions_url(body: "Doesn't matter?")
     assert_response :unauthorized
   end
 
   test "view all questions" do
-    get questions_url, headers: @header
+    get api_questions_url, headers: @header
     assert_response :ok
     json = response.body
     hash = json.blank? ? {} : JSON.parse(json)
@@ -37,7 +37,7 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "view all questions with no auth header" do
-    get questions_url
+    get api_questions_url
     assert_response :unauthorized
   end
 
@@ -45,14 +45,14 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     user = users(:moderator)
     header = auth_header(user.id)
     question = questions(:two)
-    put question_url(id: question.id, is_selected: true), headers: header
+    put api_question_url(id: question.id, is_selected: true), headers: header
     assert_response :ok
     assert question.reload.is_selected
   end
 
   test "selecting a question as attendee" do
     question = questions(:two)
-    put question_url(id: question.id, is_selected: true), headers: @header
+    put api_question_url(id: question.id, is_selected: true), headers: @header
     assert_response :unauthorized
     assert_not question.is_selected
   end
